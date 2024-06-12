@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam Menggunakan Hitungan Nama</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', sans-serif;
+            background: linear-gradient(135deg, #ff6fbf, #ffc46b);
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+            width: 90%;
+            max-width: 400px;
+        }
+        .form-container h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+        .form-container input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff6fbf;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #ff4f8b;
+        }
+        .result-container {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        @media (max-width: 600px) {
+            .form-container h1 {
+                font-size: 2rem;
+            }
+            .form-container input[type="submit"] {
+                font-size: 1rem;
+            }
+            .result-container {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>What's Your Name?</h1>
+        <form id="nameForm">
+            <input type="text" id="nameInput" placeholder="Enter Your Name" required>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="result" class="result-container"></div>
+    </div>
+
+    <script>
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('nameInput').value;
+            if (name) {
+                const khodamList = [
+                    "Anak Kecil Berambut Panjang",
+                    "Nenek Mata Merah",
+                    "Kakek Pembawa Guci",
+                    "Kuyang",
+                    "Alfalink",
+                    "Dustin Tiffani",
+                    "Remote AC",
+                    "Genderuwo Armor Level 3",
+                    "Macan Putih Taring Pannjang"
+                ];
+                const randomIndex = Math.floor(Math.random() * khodamList.length);
+                const khodam = khodamList[randomIndex];
+                document.getElementById('result').textContent = `Hello, ${name}! Khodam anda adalah ${khodam}.`;
+            } else {
+                alert('Please enter your name.');
+            }
+        });
+    </script>
+</body>
+</html>
