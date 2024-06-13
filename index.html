@@ -71,6 +71,13 @@
             color: #ffc46b;
             animation: pulse 1s infinite;
         }
+        .loading-2 {
+            display: none;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #ffc46b;
+            animation: pulse 1s infinite;
+        }
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -108,10 +115,10 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>What's Your Name?</h1>
+        <h1>Siapa Khodam Anda menurut perhitungan China Kuno ?</h1>
         <form id="nameForm">
             <input type="text" id="nameInput" placeholder="Enter Your Name" required>
-            <input type="date" id="birthDateInput" required>
+            <!-- <input type="date" id="birthDateInput" required> -->
             <select id="zodiacInput" required>
                 <option value="" disabled selected>Select Your Zodiac</option>
                 <option value="Aries">Aries</option>
@@ -127,12 +134,28 @@
                 <option value="Aquarius">Aquarius</option>
                 <option value="Pisces">Pisces</option>
             </select>
+            <select id="shioInput" required>
+                <option value="" disabled selected>Pilih Shio Anda</option>
+                <option value="Tikus">Tikus</option>
+                <option value="Kerbau">Kerbau</option>
+                <option value="Macan">Macan</option>
+                <option value="Kelinci">Kelinci</option>
+                <option value="Naga">Naga</option>
+                <option value="Ular">Ular</option>
+                <option value="Kuda">Kuda</option>
+                <option value="Kambing">Kambing</option>
+                <option value="Monyet">Monyet</option>
+                <option value="Ayam">Ayam</option>
+                <option value="Anjing">Anjing</option>
+                <option value="Babi">Babi</option>
+            </select>
             <input type="submit" value="Submit">
         </form>
         <div id="loading" class="loading" style="display:none;">Please wait, calculating...</div>
+        <div id="loading-2" class="loading-2">Using Chinese calendar...</div>
         <div id="result" class="result-container"></div>
     </div>
-    <div class="watermark">Made by Ricaro Alisio</div>
+    <div class="watermark">Made by Rama Nanda</div>
 
     <script>
         document.getElementById('nameForm').addEventListener('submit', function(event) {
@@ -140,9 +163,13 @@
             const name = document.getElementById('nameInput').value;
             const birthDate = document.getElementById('birthDateInput').value;
             const zodiac = document.getElementById('zodiacInput').value;
-            if (name && birthDate && zodiac) {
+            const shio = document.getElementById('shioInput').value;
+            if (name && birthDate && zodiac && shio) {
                 document.getElementById('loading').style.display = 'block';
                 document.getElementById('result').style.display = 'none';
+                setTimeout(() => {
+                    document.getElementById('loading-2').style.display = 'block';
+                }, 1500);
                 setTimeout(() => {
                     const khodamList = [
                         "Anak Kecil Berambut Panjang",
@@ -158,11 +185,12 @@
                     const randomIndex = Math.floor(Math.random() * khodamList.length);
                     const khodam = khodamList[randomIndex];
                     document.getElementById('loading').style.display = 'none';
+                    document.getElementById('loading-2').style.display = 'none';
                     document.getElementById('result').textContent = `Hello, ${name}! Khodam anda adalah ${khodam}.`;
                     document.getElementById('result').style.display = 'block';
                 }, 3000);
             } else {
-                alert('Please enter your name, birth date, and zodiac.');
+                alert('Please enter your name, birth date, zodiac, and shio.');
             }
         });
     </script>
