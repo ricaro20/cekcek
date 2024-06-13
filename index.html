@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cek Khodam Menggunakan Hitungan Nama</title>
     <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap'); */
+
         body {
             display: flex;
             flex-direction: column;
@@ -12,10 +14,13 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Comic Sans MS', sans-serif;
-            background: linear-gradient(135deg, #f5b5ff, #ffd7b5);
+            font-family: 'Nanum Brush Script', cursive;
+            background: #d8bfd8;
             color: #fff;
             text-shadow: 1px 1px 2px #000;
+            background-image: url('https://i.imgur.com/0B0E4JD.png');
+            background-size: cover;
+            background-attachment: fixed;
         }
         .form-container {
             background: rgba(255, 255, 255, 0.2);
@@ -27,15 +32,17 @@
             max-width: 400px;
             animation: float 3s ease-in-out infinite;
             box-sizing: border-box;
+            border: 2px solid #ff4f8b;
+            position: relative;
         }
         .form-container h1 {
             margin-bottom: 20px;
             font-size: 2.5rem;
             letter-spacing: 1px;
             color: #ff4f8b;
+            text-shadow: 2px 2px 4px #000;
         }
         .form-container input[type="text"],
-        .form-container input[type="date"],
         .form-container select {
             width: calc(100% - 20px);
             padding: 10px;
@@ -46,6 +53,7 @@
             font-size: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
+            font-family: 'Nanum Brush Script', cursive;
         }
         .form-container input[type="submit"] {
             padding: 10px 20px;
@@ -111,14 +119,36 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
         }
+        .lantern {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            background: red;
+            top: -50px;
+            left: 20px;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: rotate(15deg);
+        }
+        .dragon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: gold;
+            top: -40px;
+            right: -40px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h1>Siapa Khodam Anda menurut perhitungan China Kuno ?</h1>
+        <div class="lantern"></div>
+        <div class="dragon"></div>
+        <h1>Siapa Khodam Anda Menurut Perhitungan China Kuno?</h1>
         <form id="nameForm">
             <input type="text" id="nameInput" placeholder="Enter Your Name" required>
-            <!-- <input type="date" id="birthDateInput" required> -->
             <select id="zodiacInput" required>
                 <option value="" disabled selected>Select Your Zodiac</option>
                 <option value="Aries">Aries</option>
@@ -161,10 +191,9 @@
         document.getElementById('nameForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('nameInput').value;
-            const birthDate = document.getElementById('birthDateInput').value;
             const zodiac = document.getElementById('zodiacInput').value;
             const shio = document.getElementById('shioInput').value;
-            if (name && birthDate && zodiac && shio) {
+            if (name && zodiac && shio) {
                 document.getElementById('loading').style.display = 'block';
                 document.getElementById('result').style.display = 'none';
                 setTimeout(() => {
@@ -190,7 +219,7 @@
                     document.getElementById('result').style.display = 'block';
                 }, 3000);
             } else {
-                alert('Please enter your name, birth date, zodiac, and shio.');
+                alert('Please enter your name, zodiac, and shio.');
             }
         });
     </script>
